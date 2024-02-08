@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rum</title>
+  <link rel="icon" href="images/icon.png" type="image/icon type">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 0;
+list-style: none;
+text-decoration: none;
+}
+body{
+background: linear-gradient(360deg, rgb(177, 70, 43) 10%, rgb(33, 33, 34) 100%);;
+
+}
+nav .logo{
+color: white;
+font-size: 28px;
+font-weight: bold;
+line-height: 55px;
+padding-left: 90px;
+}
+nav{
+height: 55px;
+background: #252929;
+box-shadow: 0 3px 15px rgba(0,0,0,.4);
+}
+nav ul{
+float: right;
+margin-right: 30px;
+}
+nav ul li{
+display: inline-block;
+}
+nav ul li a{
+color: white;
+display: block;
+padding: 0 15px;
+line-height: 55px;
+font-size: 15px;
+background: #252929;
+transition: .5s;
+}
+nav ul li a:hover,
+nav ul li a.active{
+color: #1fd8c9;
+}
+.box{
+  color:white;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.cart-count{
+  position: absolute;
+  background-color: #2f3542;
+  top: 0px;
+  right: 0;
+  padding: 2px;
+  height: 10px;
+  width: 10px;
+  line-height:15px ;
+  border-radius: 50%;
+  z-index: 99;
+}
+
+#cart-icon{
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+img{
+  width: 100%;
+}
+
+.container{
+  max-width: 1200px;
+  padding: 4rem;
+  margin: auto;
+  width: 100%;
+}
+
+h2.title{
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color:#ffffff;
+}
+
+.shop-content{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,auto));
+  gap:1.5rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.liquar-box{
+  position: relative;
+  background-color: #e0e0e0;
+  padding: 10px;
+  box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
+  border-radius: 3px;
+}
+
+.pic{
+  overflow: hidden;
+}
+
+.pic:hover img{
+transform: scale(1.5);
+}
+
+.liquar-img{
+  transition: 0.4s;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.liquar-title{
+  font-size: 1rem;
+  font-weight: 600;
+  color:#ff6348;
+}
+
+.liquar-price{
+  font-weight:500 ;
+}
+
+.add-cart{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #2ed573;
+  color:white;
+  padding: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.add-cart:hover{
+  background-color:rgba(255, 0, 0, 0.786);
+}
+  
+.cart{
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
+  z-index: 100;
+}
+
+.cart-active{
+  right:0;
+  transition: 0.5s;
+}
+
+.cart-title{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-bottom:20px ;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.cart-box{
+  display: grid;
+  grid-template-columns: 32% 50% 18%;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 10px;
+}
+
+.cart-img{
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border:2px solid  rgba(0,0,0,0.1);
+  padding: 5px;
+}
+.detail-box{
+  display: grid;
+  row-gap: 0.5rem;  
+}
+
+.price-box{
+  display: flex;
+    justify-content: space-between; 
+}
+
+.cart-liquar-title{
+   font-size: 1rem;
+   text-transform: uppercase;
+   color:#ff6348;
+   font-weight: 500;
+}
+
+.cart-price{
+  font-weight: 500;
+}
+
+.cart-quantity{
+  border:1px solid rgba(0,0,0,0.1);
+  outline:none ;
+  width: 2.4rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.cart-remove{
+  font-size: 24px;
+  color:red;
+  cursor: pointer;
+}
+
+.total{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.total-title{
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.total-price{
+  margin-left: 0.5rem;
+}
+
+.btn-buy{
+  padding: 12px 20px;
+  background-color:#2f3542;
+  color:#fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#cart-close{
+  position: absolute;
+  top: 1rem;
+  right: 0.8rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+</style>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+</head>
+<body>
+    <nav>
+        <label class="logo">LIQUOR STORE</label>
+        <ul>
+         <li><a href="Home.html">Home</a></li>
+         <li><a href="Beer.html">Beer</a></li>
+         <li><a href="Rum.html">Rum</a></li>
+         <li><a href="Whisky.html">Whisky</a></li>
+         <li><a class="active" href="Vodka.html">Vodka</a></li>
+      
+           <li><a href="Login.html">Login</a></li>
+                
+            <li><a href="AboutUs.html">About Us</a></li>
+
+            <li>
+            <div class="box">
+                <div class="cart-count">0</div>
+                <ion-icon name="cart"  id="cart-icon"></ion-icon>
+              </div>
+           </li> 
+        </ul>
+     </nav>
+
+      <div class="cart">
+        <div class="cart-title">Cart Items</div>
+        <div class="cart-content">
+
+        </div>
+        
+      <div class="total">
+        <div class="total-title">Total</div>
+        <div class="total-price">Rs.0</div>
+      </div>
+
+      <button class="btn-buy">Place Order</button>
+
+      <ion-icon name="close" id="cart-close"></ion-icon>
+
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <h2 class="title">List of Vodka</h2>
+    <div class="shop-content">
+
+      <div class="liquar-box">
+        <div class="pic">
+          <img src="images/vodka/magic-moments.jpg" class="liquar-img">
+        </div>
+        <h2 class="liquar-title">Magic Moments (750 ml)</h2>
+        <span class="liquar-price">Rs.500</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+
+
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/Belvedere-Vodka-.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Belvedere (1000ml)</h2>
+        <span class="liquar-price">Rs.5360</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="liquar-box">
+        <div class="pic"><img src="images//vodka/grey-goose.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Grey Goose (1000ml)</h2>
+        <span class="liquar-price">Rs.5870</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/absolut-vodka.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Absolute (750ml)</h2>
+        <span class="liquar-price">Rs.1520</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/smirnoff-vodka.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Smirnoff (750ml)</h2>
+        <span class="liquar-price">Rs.1560</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/ciroc-vodka.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Ciroc (1000ml)</h2>
+        <span class="liquar-price">Rs.4890</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+  
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/Finlandia-Vodka.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Finlandia (750ml)</h2>
+        <span class="liquar-price">Rs.1630</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+  
+  
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/sky.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Skyy (1000ml)</h2>
+        <span class="liquar-price">Rs.2190</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/Eristoff.png" class="liquar-img"></div>
+        <h2 class="liquar-title">Eristoff (750ml)</h2>
+        <span class="liquar-price">Rs.1072</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+
+      <div class="liquar-box">
+        <div class="pic"><img src="images/vodka/Ketel-One-Vodka.jpg" class="liquar-img"></div>
+        <h2 class="liquar-title">Ketel One (750ml)</h2>
+        <span class="liquar-price">Rs.3500</span>
+        <ion-icon name="cart" class="add-cart"></ion-icon>
+      </div>
+
+    </div>
+  </div>
+<script>
+const btnCart=document.querySelector('#cart-icon');
+const cart=document.querySelector('.cart');
+const btnClose=document.querySelector('#cart-close');
+
+btnCart.addEventListener('click',()=>{
+  cart.classList.add('cart-active');
+});
+
+btnClose.addEventListener('click',()=>{
+  cart.classList.remove('cart-active');
+});
+
+document.addEventListener('DOMContentLoaded',loadliquar);
+
+function loadliquar(){
+  loadContent();
+
+}
+
+function loadContent(){
+  //Remove liquar Items  From Cart
+  let btnRemove=document.querySelectorAll('.cart-remove');
+  btnRemove.forEach((btn)=>{
+    btn.addEventListener('click',removeItem);
+  });
+
+  //Product Item Change Event
+  let qtyElements=document.querySelectorAll('.cart-quantity');
+  qtyElements.forEach((input)=>{
+    input.addEventListener('change',changeQty);
+  });
+
+  //Product Cart
+  
+  let cartBtns=document.querySelectorAll('.add-cart');
+  cartBtns.forEach((btn)=>{
+    btn.addEventListener('click',addCart);
+  });
+
+  updateTotal();
+}
+
+
+//Remove Item
+function removeItem(){
+  if(confirm('Are Your Sure to Remove')){
+    let title=this.parentElement.querySelector('.cart-liquar-title').innerHTML;
+    itemList=itemList.filter(el=>el.title!=title);
+    this.parentElement.remove();
+    loadContent();
+  }
+}
+
+//Change Quantity
+function changeQty(){
+  if(isNaN(this.value) || this.value<1){
+    this.value=1;
+  }
+  loadContent();
+}
+
+let itemList=[];
+
+//Add Cart
+function addCart(){
+ let liquar=this.parentElement;
+ let title=liquar.querySelector('.liquar-title').innerHTML;
+ let price=liquar.querySelector('.liquar-price').innerHTML;
+ let imgSrc=liquar.querySelector('.liquar-img').src;
+ //console.log(title,price,imgSrc);
+ 
+ let newProduct={title,price,imgSrc}
+
+ //Check Product already Exist in Cart
+ if(itemList.find((el)=>el.title==newProduct.title)){
+  alert("Product Already added in Cart");
+  return;
+ }else{
+  itemList.push(newProduct);
+ }
+
+
+let newProductElement= createCartProduct(title,price,imgSrc);
+let element=document.createElement('div');
+element.innerHTML=newProductElement;
+let cartBasket=document.querySelector('.cart-content');
+cartBasket.append(element);
+loadContent();
+}
+
+
+function createCartProduct(title,price,imgSrc){
+
+  return `
+  <div class="cart-box">
+  <img src="${imgSrc}" class="cart-img">
+  <div class="detail-box">
+    <div class="cart-liquar-title">${title}</div>
+    <div class="price-box">
+      <div class="cart-price">${price}</div>
+       <div class="cart-amt">${price}</div>
+   </div>
+    <input type="number" value="1" class="cart-quantity">
+  </div>
+  <ion-icon name="trash" class="cart-remove"></ion-icon>
+</div>
+  `;
+}
+
+function updateTotal()
+{
+  const cartItems=document.querySelectorAll('.cart-box');
+  const totalValue=document.querySelector('.total-price');
+
+  let total=0;
+
+  cartItems.forEach(product=>{
+    let priceElement=product.querySelector('.cart-price');
+    let price=parseFloat(priceElement.innerHTML.replace("Rs.",""));
+    let qty=product.querySelector('.cart-quantity').value;
+    total+=(price*qty);
+    product.querySelector('.cart-amt').innerText="Rs."+(price*qty);
+
+  });
+
+  totalValue.innerHTML='Rs.'+total;
+
+
+  // Add Product Count in Cart Icon
+
+  const cartCount=document.querySelector('.cart-count');
+  let count=itemList.length;
+  cartCount.innerHTML=count;
+
+  if(count==0){
+    cartCount.style.display='none';
+  }else{
+    cartCount.style.display='block';
+  }
+
+
+}
+  </script>
+</body>
+</html>
